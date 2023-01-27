@@ -15,7 +15,7 @@ public abstract class Entity<ID extends Identifier> {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Entity<?> entity = (Entity<?>) o;
+        final Entity<?> entity = (Entity<?>) o;
         return id.equals(entity.id);
     }
 
