@@ -3,6 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        //para que em todos os scripts de build seja adicionado o flyway no classpath
         classpath 'org.flywaydb:flyway-mysql:8.5.10'
     }
 }
@@ -53,6 +54,7 @@ dependencies {
 
     testRuntimeOnly('com.h2database:h2')
 //    implementation('com.h2database:h2')
+
 }
 
 flyway {
