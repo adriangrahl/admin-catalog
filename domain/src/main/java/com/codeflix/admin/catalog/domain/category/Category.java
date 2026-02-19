@@ -43,6 +43,13 @@ public class Category extends AggregateRoot<CategoryID> {
         new CategoryValidator(this, handler).validate();
     }
 
+    public Category activate() {
+        this.deletedAt = null;
+        this.active = true;
+        this.updatedAt = Instant.now();
+        return this;
+    }
+
     public Category deactivate() {
         final var now = Instant.now();
         if (getDeletedAt() == null) {
@@ -54,9 +61,14 @@ public class Category extends AggregateRoot<CategoryID> {
         return this;
     }
 
-    public Category activate() {
-        this.deletedAt = null;
-        this.active = true;
+    public Category update(final String aName, final String aDescription, final boolean isActive) {
+        if (isActive) {
+            this.activate();
+        } else {
+            this.deactivate();
+        }
+        this.name = aName;
+        this.description = aDescription;
         this.updatedAt = Instant.now();
         return this;
     }
