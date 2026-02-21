@@ -1,9 +1,15 @@
 package com.codeflix.admin.catalog.infrastructure;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import com.codeflix.admin.catalog.infrastructure.configuration.WebServerConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Main {
+
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        SpringApplication.run(WebServerConfiguration.class, args);
     }
+
 }
