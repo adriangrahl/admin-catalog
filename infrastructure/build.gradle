@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        gradlePluginPortal()
     }
 //    dependencies {
 //        classpath 'org.flywaydb:flyway-mysql:9.11.0'
@@ -11,7 +12,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.springframework.boot' version '2.7.7'
-//    id 'io.spring.dependency-management' version '1.1.0.RELEASE'
+//    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 bootJar {
@@ -23,12 +24,13 @@ group = 'com.codeflix.admin.catalog.infrastructure'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    gradlePluginPortal()
     mavenCentral()
 }
 
 
 dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.7")
+
     implementation(project(":domain"))
     implementation(project(":application"))
 //    testImplementation platform('org.junit:junit-bom:5.10.0')
@@ -39,11 +41,13 @@ dependencies {
     }
     implementation('org.springframework.boot:spring-boot-starter-undertow')
     //servidor web que tem performado melhor que o tomcat
-
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('mysql:mysql-connector-java')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.7")
+//    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.7")
 }
 
 test {
     useJUnitPlatform()
 }
+//./gradlew bootRun --stacktrace
