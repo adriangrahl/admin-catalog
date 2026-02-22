@@ -45,6 +45,9 @@ dependencies {
     implementation('mysql:mysql-connector-java')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 //    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.7")
+
+    testRuntimeOnly('com.h2database:h2')
+//    implementation('com.h2database:h2')
 }
 
 test {
