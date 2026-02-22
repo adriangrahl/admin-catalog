@@ -3,9 +3,9 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
-//    dependencies {
-//        classpath 'org.flywaydb:flyway-mysql:9.11.0'
-//    }
+    dependencies {
+        classpath 'org.flywaydb:flyway-mysql:9.11.0'
+    }
 }
 
 plugins {
@@ -13,6 +13,7 @@ plugins {
     id 'application'
     id 'org.springframework.boot' version '2.7.7'
 //    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.flywaydb.flyway' version '8.5.10'
 }
 
 bootJar {
@@ -48,6 +49,14 @@ dependencies {
 
     testRuntimeOnly('com.h2database:h2')
 //    implementation('com.h2database:h2')
+}
+
+flyway {
+    url = System.getenv('FLYWAY_DB') ?: 'jdbc:mysql://localhost:3306/adm_videos'
+    user = System.getenv('FLYWAY_USER') ?: 'root'
+    password = System.getenv('FLYWAY_PASS') ?: '123456'
+    //./gradlew flywayinfo
+    //./gradlew flywayMigrate
 }
 
 test {
