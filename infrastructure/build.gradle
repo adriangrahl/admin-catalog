@@ -57,6 +57,7 @@ flyway {
     password = System.getenv('FLYWAY_PASS') ?: '123456'
     //./gradlew flywayinfo
     //./gradlew flywayMigrate
+    //cleanDisabled = false
 }
 
 test {
