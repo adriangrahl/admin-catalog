@@ -19,12 +19,12 @@ public class Main {
         SpringApplication.run(WebServerConfig.class, args);
     }
 
-    @Bean
-    @DependsOnDatabaseInitialization
-    ApplicationRunner runner(@Autowired CreateCategoryUseCase createCategoryUseCase) {
-        return args -> {
-
-        };
-    }
+//    @Bean
+//    @DependsOnDatabaseInitialization
+//    ApplicationRunner runner(@Autowired CreateCategoryUseCase createCategoryUseCase) {
+//        return args -> {
+//
+//        };
+//    }
 
 }

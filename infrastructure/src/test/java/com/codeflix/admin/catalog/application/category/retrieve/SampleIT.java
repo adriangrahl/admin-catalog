@@ -1,4 +1,4 @@
-package com.codeflix.admin.catalog.application;
+package com.codeflix.admin.catalog.application.category.retrieve;
 
 import com.codeflix.admin.catalog.IntegrationTest;
 import com.codeflix.admin.catalog.application.category.create.CreateCategoryUseCase;
