@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":domain"))
 
     implementation("io.vavr:vavr:0.10.5")
+//    implementation("javax.inject:javax.inject:1")
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

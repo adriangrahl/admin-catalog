@@ -9,7 +9,6 @@ import io.vavr.control.Either;
 import java.util.Objects;
 
 import static io.vavr.API.Left;
-import static io.vavr.API.Right;
 
 public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
 
