@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 public class GetCategoryByIdUseCaseIT {
 
     @Autowired
-    private DefaultGetCategoryByIdUseCase useCase;
+    private GetCategoryByIdUseCase useCase;
 
     @Autowired
     private CategoryRepository categoryRepository;
