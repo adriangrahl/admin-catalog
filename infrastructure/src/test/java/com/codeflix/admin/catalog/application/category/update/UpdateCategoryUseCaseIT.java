@@ -5,6 +5,7 @@ import com.codeflix.admin.catalog.domain.category.Category;
 import com.codeflix.admin.catalog.domain.category.CategoryGateway;
 import com.codeflix.admin.catalog.domain.category.CategoryID;
 import com.codeflix.admin.catalog.domain.exceptions.DomainException;
+import com.codeflix.admin.catalog.domain.exceptions.NotFoundException;
 import com.codeflix.admin.catalog.infrastructure.category.persistence.CategoryJpaEntity;
 import com.codeflix.admin.catalog.infrastructure.category.persistence.CategoryRepository;
 import org.junit.jupiter.api.Assertions;
@@ -62,7 +63,7 @@ public class UpdateCategoryUseCaseIT {
         Assertions.assertNotNull(actualOutput.id());
 
         final var actualCategory =
-                this.categoryRepository.findById(actualOutput.id().getValue()).get();
+                this.categoryRepository.findById(actualOutput.id()).get();
 
         Assertions.assertEquals(expectedName, actualCategory.getName());
         Assertions.assertEquals(expectedDescription, actualCategory.getDescription());
@@ -118,7 +119,7 @@ public class UpdateCategoryUseCaseIT {
         Assertions.assertNotNull(actualOutput.id());
 
         final var actualCategory =
-                this.categoryRepository.findById(actualOutput.id().getValue()).get();
+                this.categoryRepository.findById(actualOutput.id()).get();
 
         Assertions.assertEquals(expectedName, actualCategory.getName());
         Assertions.assertEquals(expectedDescription, actualCategory.getDescription());
@@ -184,10 +185,9 @@ public class UpdateCategoryUseCaseIT {
         );
 
         final var actualException =
-                Assertions.assertThrows(DomainException.class, ()-> useCase.execute(aCommand));
+                Assertions.assertThrows(NotFoundException.class, ()-> useCase.execute(aCommand));
 
-        Assertions.assertEquals(expectedErrorCount, actualException.getErrors().size());
-        Assertions.assertEquals(expectedErrorMessage, actualException.getErrors().get(0).message());
+        Assertions.assertEquals(expectedErrorMessage, actualException.getMessage());
     }
 
     private void save(final Category... aCategory) {
