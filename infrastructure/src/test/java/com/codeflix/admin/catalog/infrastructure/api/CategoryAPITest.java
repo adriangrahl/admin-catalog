@@ -3,6 +3,7 @@ package com.codeflix.admin.catalog.infrastructure.api;
 import com.codeflix.admin.catalog.ControllerTest;
 import com.codeflix.admin.catalog.application.category.create.CreateCategoryOutput;
 import com.codeflix.admin.catalog.application.category.create.CreateCategoryUseCase;
+import com.codeflix.admin.catalog.application.category.delete.DeleteCategoryUseCase;
 import com.codeflix.admin.catalog.application.category.retrieve.get.CategoryOutput;
 import com.codeflix.admin.catalog.application.category.retrieve.get.GetCategoryByIdUseCase;
 import com.codeflix.admin.catalog.application.category.update.UpdateCategoryOutput;
@@ -53,6 +54,9 @@ public class CategoryAPITest {
 
     @MockBean
     private UpdateCategoryUseCase updateCategoryUseCase;
+
+    @MockBean
+    private DeleteCategoryUseCase deleteCategoryUseCase;
 
     @Test
     public void givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId() throws Exception {
@@ -304,6 +308,25 @@ public class CategoryAPITest {
                                 Objects.equals(expectedDescription, cmd.description()) &&
                                 Objects.equals(expectedIsActive, cmd.isActive())
         ));
+    }
+
+    @Test
+    public void givenAValidId_whenCallsDeleteCategory_thenShouldReturnNoContent() throws Exception {
+        final var expectedId = "123";
+
+        Mockito.doNothing()
+                .when(deleteCategoryUseCase).execute(any());
+
+        final var request = MockMvcRequestBuilders.delete("/categories/{id}", expectedId)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        final var response = this.mvc.perform(request)
+                .andDo(print());
+
+        response.andExpect(status().isNoContent());
+
+        verify(deleteCategoryUseCase, times(1)).execute(eq(expectedId));
     }
 
 }
